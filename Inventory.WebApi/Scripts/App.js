@@ -2,7 +2,8 @@
 
 	var self = this;
 	self.Id = ko.observable();
-	self.Type = ko.observableArray(['Printer', 'Screen', 'Laptop', 'Keyboard', 'Mouse']);
+	self.Type = ko.observable();
+	self.TypeList = ko.observableArray(['Printer', 'Screen', 'Laptop', 'Keyboard', 'Mouse']);
 	self.Description = ko.observable();
 	self.SerialNumber = ko.observable();
 	self.ImageUrl = ko.observable();
