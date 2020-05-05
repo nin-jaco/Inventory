@@ -99,7 +99,10 @@
             </div> <!-- END  col-md-4 -->
             <div class="col-md-8">
                 <div class="panel panel-default">
+                    <input type='file' accept='images/*' onchange='openFile(event);'>
+                    <div id="TheImageContents">
 
+                    </div>
                 </div> <!-- END PANEL-->
             </div> <!-- END col-md-8-->
         </div>
@@ -128,7 +131,7 @@
                             </thead> <!-- END THEAD -->
                             <tbody data-bind="foreach:hardwareList">
                                 <tr>
-                                    <td> <button type="button" class="btn btn-default btn-xs" data-bind="click $root.hardwareDetail"> <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span></button> </td>
+                                    <td> <button type="button" class="btn btn-default btn-xs" data-bind="click: $root.hardwareDetail"> <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span></button> </td>
                                     <td> <span data-bind="text:Id"></span> </td>
                                     <td> <span data-bind="text:Type"></span></td>
                                     <td> <span data-bind="text:Description"></span></td>
@@ -137,7 +140,7 @@
                                     <td> <span data-bind="text:PurchasePrice"></span> </td>
                                     <td>
                                         <button type="button" class="btn btn-danger btn-xs">
-                                            <span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true" data-bind="click $root.deleteHardwareItem"></span>
+                                            <span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true" data-bind="click: $root.deleteHardwareItem"></span>
                                         </button>
                                     </td>
                                 </tr>

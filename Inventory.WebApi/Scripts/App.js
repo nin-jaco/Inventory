@@ -120,3 +120,19 @@
 };
 
 ko.applyBindings(new ViewModel());
+
+// This grabs the file contents when the file changes
+var openFile = function (event) {
+	var input = event.target;
+
+	// Instantiate FileReader
+	var reader = new FileReader();
+	reader.onload = function () {
+		TheFileContents = reader.result;
+		// Update the output to include the <img> tag with the data URL as the source
+		document.getElementById("TheImageContents").innerHTML = '<h2>The image that you selected</h2><p><img width="200" src="' + TheFileContents + '" /></p>';
+	};
+	// Produce a data URL (base64 encoded string of the data in the file)
+	// We are retrieving the first file from the FileList object
+	reader.readAsDataURL(input.files[0]);
+};
