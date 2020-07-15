@@ -15,7 +15,7 @@ namespace Inventory.WebApi.Tests.CrudTests
     public class TestHardwareController
     {
         [TestMethod]
-        public void PostProduct_ShouldReturnSameProduct()
+        public void PostHardware_ShouldReturnSameHardware()
         {
             var controller = new HardwareController(new TestHardwareAppContext());
 
@@ -34,7 +34,7 @@ namespace Inventory.WebApi.Tests.CrudTests
         }
 
         [TestMethod]
-        public void PutProduct_ShouldReturnStatusCode()
+        public void PutHardware_ShouldReturnStatusCode()
         {
             var controller = new HardwareController(new TestHardwareAppContext());
 
@@ -47,7 +47,7 @@ namespace Inventory.WebApi.Tests.CrudTests
         }
 
         [TestMethod]
-        public void PutProduct_ShouldFail_WhenDifferentID()
+        public void PutHardware_ShouldFail_WhenDifferentID()
         {
             var controller = new HardwareController(new TestHardwareAppContext());
 
@@ -56,7 +56,7 @@ namespace Inventory.WebApi.Tests.CrudTests
         }
 
         [TestMethod]
-        public void GetProduct_ShouldReturnProductWithSameID()
+        public void GetHardware_ShouldReturnHardwareWithSameID()
         {
             var context = new TestHardwareAppContext();
             context.Hardwares.Add(GetDemoHardware());
@@ -69,7 +69,7 @@ namespace Inventory.WebApi.Tests.CrudTests
         }
 
         [TestMethod]
-        public void GetProducts_ShouldReturnAllProducts()
+        public void GetHardwares_ShouldReturnAllHardwares()
         {
             var context = new TestHardwareAppContext();
             context.Hardwares.Add(new Hardware { Id = 1, Description = "Demo1", PurchasePrice = 20, SerialNumber = "ABC123", Type = "Printer" });
@@ -84,7 +84,7 @@ namespace Inventory.WebApi.Tests.CrudTests
         }
 
         [TestMethod]
-        public void DeleteProduct_ShouldReturnOK()
+        public void DeleteHardware_ShouldReturnOK()
         {
             var context = new TestHardwareAppContext();
             var item = GetDemoHardware();
