@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[Hardware](
 	[Type] [varchar](100) NOT NULL,
 	[Description] [varchar](300) NOT NULL,
 	[SerialNumber] [varchar](100) NOT NULL,
-	[ImageUrl] [varchar](120) NOT NULL,
+	[ImageUrl] [varchar](MAX) NULL,
 	[PurchasePrice] [decimal](10, 2) NOT NULL,
  CONSTRAINT [PK_Hardware] PRIMARY KEY CLUSTERED 
 (

@@ -66,7 +66,8 @@
 
                             <div class="form-group">
                                 <label for="ImageUrl">Image Url</label>
-                                <input type="text" id="ImageUrl" class="form-control" data-bind="value:ImageUrl" placeholder="ImageUrl" />
+                                <input type="file" data-bind="file: {data: ImageUrl, name: fileName, reader: someReader}">
+                                
                             </div> <!-- END ImageUrl -->
 
                             <div class="form-group">
@@ -97,10 +98,7 @@
             </div> <!-- END  col-md-4 -->
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <input type='file' accept='images/*' onchange='openFile(event);'>
-                    <div id="TheImageContents">
-
-                    </div>
+                    <img data-bind="attr:{src: ImageUrl}" />
                 </div> <!-- END PANEL-->
             </div> <!-- END col-md-8-->
         </div>
@@ -133,7 +131,7 @@
                                     <td> <span data-bind="text:Type"></span></td>
                                     <td> <span data-bind="text:Description"></span></td>
                                     <td> <span data-bind="text:SerialNumber"></span> </td>
-                                    <td> <span data-bind="text:ImageUrl"></span> </td>
+                                    <td> <img data-bind="attr:{src: text:ImageUrl}" /> </td>
                                     <td> <span data-bind="text:PurchasePrice"></span> </td>
                                     <td> <button type="button" class="btn btn-primary btn-xs" data-bind="click: $root.hardwareDetail"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button> </td>
                                     <td>
@@ -155,7 +153,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/knockout-3.5.1.js"></script>
-
+    <script src="Scripts/knockout-file-bind.js"></script>
     <!-- app.js-->
     <script src="Scripts/app.js"></script>
 

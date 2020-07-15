@@ -8,6 +8,8 @@
 	self.SerialNumber = ko.observable();
 	self.ImageUrl = ko.observable();
 	self.PurchasePrice = ko.observable();
+	self.fileName = ko.observable();
+	self.someReader = new FileReader();
 
 	self.hardwareList = ko.observableArray([]);
 
