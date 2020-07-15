@@ -1,32 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Inventory.WebApi;
+using Inventory.WebApi.Models;
 
-namespace Inventory.WebApi.Controllers
+namespace Inventory.WebApi.Controllers.Api
 {
     public class HardwareController : ApiController
     {
-        private HardwareInventoryEntities db = new HardwareInventoryEntities();
+        private IHardwareAppContext _hardwareAppContext = new HardwareAppContext();
+
+        public HardwareController()
+        {
+            
+        }
+
+        public HardwareController(IHardwareAppContext hardwareAppContext)
+        {
+            _hardwareAppContext = hardwareAppContext;
+        }
 
         // GET: api/Hardware
         public IQueryable<Hardware> GetHardware()
         {
-            return db.Hardwares;
+            return _hardwareAppContext.Hardwares.AsQueryable();
         }
 
         // GET: api/Hardware/5
         [ResponseType(typeof(Hardware))]
         public IHttpActionResult GetHardware(int id)
         {
-            Hardware hardware = db.Hardwares.Find(id);
+            Hardware hardware = _hardwareAppContext.Hardwares.Find(id);
             if (hardware == null)
             {
                 return NotFound();
@@ -49,11 +55,11 @@ namespace Inventory.WebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(hardware).State = EntityState.Modified;
+            _hardwareAppContext.MarkAsModified(hardware);
 
             try
             {
-                db.SaveChanges();
+                _hardwareAppContext.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +85,8 @@ namespace Inventory.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Hardwares.Add(hardware);
-            db.SaveChanges();
+            _hardwareAppContext.Hardwares.Add(hardware);
+            _hardwareAppContext.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = hardware.Id }, hardware);
         }
@@ -89,14 +95,14 @@ namespace Inventory.WebApi.Controllers
         [ResponseType(typeof(Hardware))]
         public IHttpActionResult DeleteHardware(int id)
         {
-            Hardware hardware = db.Hardwares.Find(id);
+            Hardware hardware = _hardwareAppContext.Hardwares.Find(id);
             if (hardware == null)
             {
                 return NotFound();
             }
 
-            db.Hardwares.Remove(hardware);
-            db.SaveChanges();
+            _hardwareAppContext.Hardwares.Remove(hardware);
+            _hardwareAppContext.SaveChanges();
 
             return Ok(hardware);
         }
@@ -105,14 +111,14 @@ namespace Inventory.WebApi.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _hardwareAppContext.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool HardwareExists(int id)
         {
-            return db.Hardwares.Count(e => e.Id == id) > 0;
+            return _hardwareAppContext.Hardwares.Count(e => e.Id == id) > 0;
         }
     }
 }
